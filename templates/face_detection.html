@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Mask Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <style>
+        body {
+            background-image: url('../static/images/bg.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .video-feed {
+            margin-top: 20px;
+        }
+    </style>
+    <nav style="background-color: #333; padding: 10px;">
+        <a href="/">Home</a>
+        <a href="/statistics">Statistics</a>
+        <a href="/facedetection">Face Mask Detection</a>
+    </nav>
+    <h1>Face Mask Detection</h1>
+    <img src="{{ url_for('video_feed') }}" alt="Video Feed" class="video-feed">
+</body>
+</html>

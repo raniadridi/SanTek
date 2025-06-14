@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/main.css">
+    <title>Data Analysis</title>
+    <style>
+        body {
+            background-color: #f7dbe2;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        
+        nav {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        .carousel-container {
+            width: 70%;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .slide img {
+            width: 30%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            user-select: none;
+            background-color: #33333376;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .arrow:hover {
+            background-color: #555;
+        }
+
+        .arrow.left {
+            left: 5px;
+        }
+
+        .arrow.right {
+            right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/statistics">Data Analysis</a>
+        <a href="/facedetection">Face Mask Detection</a>
+    </nav>
+
+    <h1>Model Training & Data Analysis</h1>
+
+    <div class="carousel-container">
+        <div class="carousel">
+            <!-- First Slide -->
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/1.png') }}" alt="Training Accuracy" 
+                     style="width: 90vw !important; height: 70vh !important; object-fit: contain !important;">
+            </div>
+
+            <!-- Second Slide -->
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/2.png') }}" alt="Training Loss"
+                     style="width: 90vw !important; height: 70vh !important; object-fit: contain !important;">
+            </div>
+
+            <!-- Third Slide -->
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/3.png') }}" alt="Dataset Distribution"
+                     style="width: 90vw !important; height: 70vh !important; object-fit: contain !important;">
+            </div>
+
+            <!-- Fourth Slide -->
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/4.png') }}" alt="Data Split"
+                     style="width: 90vw !important; height: 70vh !important; object-fit: contain !important;">
+            </div>
+
+            <!-- Fifth Slide -->
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/5.png') }}" alt="Confusion Matrix"
+                     style="width: 90vw !important; height: 70vh !important; object-fit: contain !important;">
+            </div>
+
+            <!-- Sixth Slide -->
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/6.png') }}" alt="Performance Metrics"
+                     style="width: 90vw !important; height: 70vh !important; object-fit: contain !important;">
+            </div>
+        </div>
+
+        <!-- Left Arrow -->
+        <div class="arrow left" onclick="prevSlide()">&#10094;</div>
+
+        <!-- Right Arrow -->
+        <div class="arrow right" onclick="nextSlide()">&#10095;</div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function showSlide(index) {
+            const carousel = document.querySelector('.carousel');
+            const slideWidth = document.querySelector('.slide').offsetWidth;
+
+            if (index >= totalSlides) {
+                index = 0;
+            } else if (index < 0) {
+                index = totalSlides - 1;
+            }
+
+            currentIndex = index;
+            carousel.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+    </script>
+</body>
+</html>
